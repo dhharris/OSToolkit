@@ -1,4 +1,9 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
 #include "toolkit.h"
+#include "mouse.h"
 
 // TODO: Shift click drop instead of right click
 void drop_all_items() {
@@ -36,13 +41,14 @@ void drop_all_items() {
 
 void autoclicker(int t) {
 
+        PROGRAM_STATE = STATE_AUTOCLICK;
         int counter = 0;
         Mouse *mouse = malloc(sizeof(Mouse));
 
         printf("Press CTRL+C to stop\n");
 
         /* Loop runs for a finite number of times unless using slow autoclicker */
-        while(counter < AUTOCLICK_TIMER_MAX || t > 1) {
+        while(PROGRAM_STATE == STATE_AUTOCLICK) {
 
                 double my_rand = ((double)arc4random() / ARC4RANDOM_MAX);
 
@@ -58,7 +64,10 @@ void autoclicker(int t) {
                 if ((!(counter % 9)) && t == 1)
                         sleep((int)my_rand * RAND_OFFSET); // Sleep for random amount of seconds between 0 and RAND_OFFSET every 9 clicks (normal autoclicker only)
 
-                ++counter;
+                if (++counter > AUTOCLICK_TIMER_MAX && t == 1) {
+                        // break to main menu
+                        PROGRAM_STATE = STATE_MAIN;
+                }
         }
         free(mouse);
 }

@@ -1,3 +1,9 @@
+#include <ApplicationServices/ApplicationServices.h>
+#include <Carbon/Carbon.h>
+
+#include <stdio.h>
+#include <stdlib.h>
+
 #include "toolkit.h"
 #include "mouse.h"
 
@@ -36,14 +42,6 @@ void move_and_left_click(Mouse *mouse, float dx, float dy)
         CFRelease(move);
         CFRelease(left_click_down);
         CFRelease(left_click_up);
-}
-
-void left_click()
-{
-        Mouse *mouse = malloc(sizeof(Mouse));
-        get_mouse_pos(mouse);
-        move_and_left_click(mouse, 0.0, 0.0);
-
 }
 
 void move_and_right_click(Mouse *mouse, float dx, float dy)

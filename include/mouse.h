@@ -15,7 +15,6 @@ void get_mouse_pos(Mouse *mouse);
 void set_mouse_pos(Mouse *mouse, float x, float y);
 void move_and_left_click(Mouse *mouse, float dx, float dy);
 void move_and_right_click(Mouse *mouse, float dx, float dy);
-void left_click();
 void print_mouse_pos();
 void print_mouse(Mouse *mouse);
 
