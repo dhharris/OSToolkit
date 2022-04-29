@@ -22,26 +22,11 @@ $(BIN): $(filter-out $(ODIR)/example.o,$(OBJ))
 example: $(ODIR)/example.o
 	$(CC) $(LFLAGS) -o $@ $<
 
-$(ODIR)/%.o: $(SDIR)/%.c
+$(ODIR)/%.o: $(SDIR)/%.c | $(ODIR)
 	$(CC) -c $(CFLAGS) $< -o $@
 
-#example.o: example.c
-#	$(CC) $(CFLAGS) $^
-#
-#display.o: display.c
-#	$(CC) $(CFLAGS) display.c
-#
-#input.o: input.c
-#	$(CC) $(CFLAGS) input.c
-#
-#scripts.o: scripts.c
-#	$(CC) $(CFLAGS) scripts.c
-#
-#mouse.o: mouse.c
-#	$(CC) $(CFLAGS) mouse.c
-#
-#toolkit.o: toolkit.c
-#	$(CC) $(CFLAGS) toolkit.c
+$(ODIR):
+	mkdir -p $(ODIR)
 
 .PHONY: clean
 clean:
