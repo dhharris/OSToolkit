@@ -1,7 +1,8 @@
 #pragma once
 
 enum state {
-  STATE_RUNNING,
+  STATE_MENU,
+  STATE_SCRIPT,
   STATE_EXIT,
 };
 

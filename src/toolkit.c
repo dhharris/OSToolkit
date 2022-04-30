@@ -9,8 +9,8 @@ void handle_sigint(int sig)
 {
 	// Allows for nicer cleanup
 	(void)sig; // unused
-	printf("Exiting...\n");
-	PROGRAM_STATE = STATE_EXIT;
+	printf("Exiting to menu...\n");
+	PROGRAM_STATE = STATE_MENU;
 }
 
 void do_main_loop()
@@ -22,14 +22,17 @@ void do_main_loop()
 		break;
 	case 'B':
 	case 'b':
+		PROGRAM_STATE = STATE_SCRIPT;
 		drop_all_items();
 		break;
 	case 'C':
 	case 'c':
+		PROGRAM_STATE = STATE_SCRIPT;
 		autoclicker(1);
 		break;
 	case 'D':
 	case 'd':
+		PROGRAM_STATE = STATE_SCRIPT;
 		autoclicker(300);
 		break;
 	case 'Q':
@@ -49,7 +52,7 @@ int main()
 	/* Register signal handler */
 	signal(SIGINT, &handle_sigint);
 
-	PROGRAM_STATE = STATE_RUNNING;
+	PROGRAM_STATE = STATE_MENU;
 
 	/* Main loop */
 	while (PROGRAM_STATE != STATE_EXIT) {

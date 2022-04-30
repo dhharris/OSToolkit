@@ -49,11 +49,9 @@ void autoclicker(int t)
 	int counter = 0;
 	Mouse *mouse = malloc(sizeof(Mouse));
 
-	wait_for_input();
-
 	printf("Ctrl-C to stop\n");
 
-	while (PROGRAM_STATE != STATE_EXIT) {
+	while (PROGRAM_STATE == STATE_SCRIPT) {
 		double my_rand = ((double)arc4random() / ARC4RANDOM_MAX);
 
 		get_mouse_pos(mouse);
