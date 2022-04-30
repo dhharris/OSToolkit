@@ -1,7 +1,4 @@
-#ifndef _mouse_h_
-#define _mouse_h_
-
-#include "toolkit.h"
+#pragma once
 
 typedef struct {
 	float x;
@@ -17,5 +14,3 @@ void move_and_left_click(Mouse *mouse, float dx, float dy);
 void move_and_right_click(Mouse *mouse, float dx, float dy);
 void print_mouse_pos();
 void print_mouse(Mouse *mouse);
-
-#endif
